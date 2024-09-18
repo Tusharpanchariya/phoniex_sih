@@ -8,7 +8,7 @@ pip install pandas
 
 <!-- #2 pandas -->
 
-install pip pandas
+ pip install pandas
 
 <!-- #3 install requests -->
 
