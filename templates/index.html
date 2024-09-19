@@ -5,58 +5,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publication Summary Generator</title>
     <style>
+        /* General Body Styling */
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
+
+        /* Container Styling */
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            transition: transform 0.3s;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        /* Heading Styling */
         h1 {
-            color: #333;
+            text-align: center;
+            color: #222;
+            font-size: 28px;
+            margin-bottom: 5px;
         }
+
+        h2 {
+            text-align: center;
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        /* Form Styling */
         form {
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
+
+        /* File Input Styling */
         input[type="file"] {
-            margin-bottom: 10px;
+            display: none;
         }
-        input[type="submit"] {
+
+        label[for="file"] {
+            display: inline-block;
             background-color: #4CAF50;
             color: white;
-            padding: 10px 20px;
-            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-        input[type="submit"]:hover {
+
+        label[for="file"]:hover {
             background-color: #45a049;
         }
+
+        /* Year Input Styling */
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        /* Submit Button Styling */
+        input[type="submit"] {
+            background-image: linear-gradient(120deg, #4CAF50, #45a049);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: background-image 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-image: linear-gradient(120deg, #45a049, #388e3c);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Error Message Styling */
         .message {
+            margin-top: 20px;
+            background-color: #ffe6e6;
             color: #ff0000;
-            margin-top: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ff0000;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Publication Summary Generator</h1>
-    <h2>Input excel file with author,authorID,subject</h2>
-    <form method="post" enctype="multipart/form-data">
-     <!-- File input for uploading the Excel file -->
-        <label for="file">Choose Excel File:</label>
-        <input type="file" name="file" accept=".xlsx,.xls" required><br><br>
+    <div class="container">
+        <h1>Publication Summary Generator</h1>
+        <h2>Input Excel file with author, authorID, subject</h2>
+        
+        <form method="post" enctype="multipart/form-data">
+            <!-- File input with styled label -->
+            <label for="file">Choose Excel File</label>
+            <input type="file" name="file" id="file" accept=".xlsx, .xls" required>
+            
+            <!-- Optional inputs for specifying the year range -->
+            <input type="number" name="start" placeholder="Start Year (Optional)" value="0000">
+            <input type="number" name="end" placeholder="End Year (Optional)" value="2024">
+            
+            <!-- Submit button -->
+            <input type="submit" value="Upload and Process">
+        </form>
 
-        <!-- Optional inputs for specifying the year range -->
-        <label for="start">Start Year (Optional):</label>
-        <input type="number" name="start" value="0000" placeholder="Enter start year"><br><br>
-
-        <label for="end">End Year (Optional):</label>
-        <input type="number" name="end" value = "2024" placeholder="Enter end year"><br><br>
-
-        <!-- Submit button -->
-        <input type="submit" value="Upload and Process">
-    </form>
-
-    {% if message %}
-    <p class="message">{{ message }}</p>
-    {% endif %}
+        {% if message %}
+        <div class="message">
+            <p>{{ message }}</p>
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>
