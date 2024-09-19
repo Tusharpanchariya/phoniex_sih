@@ -4,15 +4,8 @@ Install python latest version
 
 <!-- #1  flask  -->
 
-pip install pandas 
+pip install flask pandas requests Werkzeug xlsxwriter openpyxl json5 matplotlib numpy
 
-<!-- #2 pandas -->
-
- pip install pandas
-
-<!-- #3 install requests -->
-
-pip install requests
 
 <!-- ......... -->
 
