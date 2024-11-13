@@ -30,7 +30,7 @@ def process_excel(file):
 def get_data(authorID,start=0,end=2024):
     params={"engine":"google_scholar_author",
             "author_id": authorID,
-            "api_key": "044cd4179486a2ec60c518e279336ea584771cd5286a0d7e64452a184fb22345"
+            "api_key": "API_KEY"
 }
 
     search = requests.get("https://serpapi.com/search",params=params)
